@@ -1,15 +1,18 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaWhatsapp, FaTimes } from "react-icons/fa";
-import { CONTACT_INFO } from "../../constants/contact";
-import { useEffect } from "react";
+import CONTACT_INFO from "../../constants/contact";
+import { useEffect, useRef } from "react";
 
 const MobileMenu = ({ isOpen, onClose }) => {
   const location = useLocation();
+  const isInitialMount = useRef(true);
 
-  // Close menu on route change
+  // Close menu on route change - only when isOpen is true
   useEffect(() => {
-    onClose();
-  }, [location, onClose]);
+    if (isOpen) {
+      onClose();
+    }
+  }, [location.pathname]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -39,43 +42,40 @@ const MobileMenu = ({ isOpen, onClose }) => {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 z-40 md:hidden"
+        className="fixed inset-0 bg-black/50 z-[9998] md:hidden"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Menu Panel */}
       <div
-        className="fixed top-0 right-0 h-full w-72 bg-white z-50 md:hidden shadow-xl animate-slide-up"
+        className="fixed top-0 right-0 h-full w-72 bg-white z-[9999] md:hidden shadow-2xl"
+        style={{
+          animation: "slideInRight 0.3s ease-out",
+        }}
         role="dialog"
         aria-label="Mobile navigation menu"
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors z-10"
           aria-label="Close menu"
         >
-          <FaTimes className="text-2xl" />
+          <FaTimes className="text-2xl text-text" />
         </button>
 
         {/* Menu content */}
-        <div className="pt-16 px-6">
+        <div className="pt-16 px-6 h-full overflow-y-auto">
           {/* Logo */}
           <div className="mb-8">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold">
-                NS
-              </div>
-              <div>
-                <span className="text-lg font-bold text-brand-primary">
-                  Naans Spring
-                </span>
-                <span className="block text-xs text-text-muted -mt-1">
-                  Enterprise
-                </span>
-              </div>
-            </div>
+            <Link to="/" onClick={onClose} className="flex items-center gap-3">
+              <img
+                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                alt="Naans Spring Enterprise Logo"
+                className="h-10 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Navigation Links */}
@@ -106,23 +106,28 @@ const MobileMenu = ({ isOpen, onClose }) => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-whatsapp w-full text-center"
+            className="btn-whatsapp w-full text-center flex items-center justify-center gap-2"
             onClick={onClose}
           >
             <FaWhatsapp className="text-xl" />
             Order on WhatsApp
           </a>
-
-          {/* Contact Info */}
-          <div className="mt-6 space-y-2 text-sm text-text-muted">
-            <p className="font-medium text-text">Contact Us:</p>
-            <p>📞 {CONTACT_INFO.phone}</p>
-            <p>📍 {CONTACT_INFO.address.split(",")[0]}</p>
-            <p className="text-xs">Nationwide Delivery Available</p>
-          </div>
         </div>
       </div>
+
+      {/* Add keyframe animation */}
+      <style>{`
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </>
   );
 };
+
 export default MobileMenu;

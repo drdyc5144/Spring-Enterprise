@@ -88,7 +88,7 @@ const About = () => {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/images/about/about-store.jpg"
+                  src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Naans Spring Enterprise - Quality Foodstuff Store"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -96,9 +96,11 @@ const About = () => {
               </div>
               <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg border border-border p-4 max-w-[200px]">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
-                    NS
-                  </div>
+                  <img
+                    src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                    alt="Naans Spring Enterprise Logo"
+                    className="h-10 w-auto"
+                  />
                   <div>
                     <p className="text-xs font-semibold text-text">
                       Established

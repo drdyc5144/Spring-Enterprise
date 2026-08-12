@@ -30,6 +30,7 @@ const Navbar = () => {
     { to: "/shop", label: "Shop" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
+    { to: "/faq", label: "FAQ" },
   ];
 
   const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsapp}`;
@@ -53,17 +54,11 @@ const Navbar = () => {
               className="flex items-center gap-2 group"
               aria-label="Naans Spring Enterprise Home"
             >
-              <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
-                NS
-              </div>
-              <div className="hidden sm:block">
-                <span className="text-xl font-bold text-brand-primary group-hover:text-brand-secondary transition-colors">
-                  Naans Spring
-                </span>
-                <span className="block text-xs text-text-muted -mt-1">
-                  Enterprise
-                </span>
-              </div>
+              <img
+                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                alt="Naans Spring Enterprise Logo"
+                className="h-12 w-auto md:h-14"
+              />
             </Link>
 
             {/* Desktop Navigation */}

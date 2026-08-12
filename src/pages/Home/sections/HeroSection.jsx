@@ -75,19 +75,30 @@ const HeroSection = () => {
 
           {/* Right Image */}
           <div className="relative animate-slide-up lg:animate-none">
-            <div className="relative aspect-square lg:aspect-auto lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-square lg:aspect-auto lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center">
+              {/* Fallback content if image doesn't load */}
+              <div className="text-center p-8">
+                <div className="text-6xl mb-4">🛒</div>
+                <h3 className="text-2xl font-bold text-brand-primary mb-2">Quality Foodstuff</h3>
+                <p className="text-text-muted">Stock Fish • Ogbono • Egusi • Crawfish • Kpomo • Beans • Palm Oil • Tuwo Rice</p>
+              </div>
               <img
-                src="/images/hero/hero-banner.jpg"
-                alt="Naans Spring Enterprise - Quality Foodstuff"
-                className="w-full h-full object-cover"
+                src="https://i.postimg.cc/L570NrDF/hero-section.png"
+                alt="Naans Spring Enterprise - Quality Foodstuff Products including Stock Fish, Ogbono, Egusi, Crawfish, Kpomo, Beans, Palm Oil and Tuwo Rice"
+                className="w-full h-full object-cover absolute inset-0"
                 loading="eager"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
               />
               {/* Floating badge */}
-              <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4 max-w-[200px]">
+              <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4 max-w-[200px] z-10">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold">
-                    NS
-                  </div>
+                  <img
+                    src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                    alt="Naans Spring Enterprise Logo"
+                    className="h-10 w-auto"
+                  />
                   <div>
                     <p className="text-xs font-semibold text-text">
                       Trusted Since
@@ -97,7 +108,7 @@ const HeroSection = () => {
                 </div>
               </div>
               {/* Delivery badge */}
-              <div className="absolute top-4 right-4 bg-brand-accent/95 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+              <div className="absolute top-4 right-4 bg-brand-accent/95 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-10">
                 🚚 Nationwide Delivery
               </div>
             </div>

@@ -7,8 +7,6 @@ import {
   FaTruck,
   FaClock,
   FaFacebook,
-  FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
 import CONTACT_INFO from "../../constants/contact";
 
@@ -41,21 +39,9 @@ const Footer = () => {
     },
     {
       icon: FaFacebook,
-      url: CONTACT_INFO.socialMedia.facebook || "#",
+      url: "https://web.facebook.com/naanswat.namang",
       label: "Facebook",
       color: "hover:text-[#1877F2]",
-    },
-    {
-      icon: FaInstagram,
-      url: CONTACT_INFO.socialMedia.instagram || "#",
-      label: "Instagram",
-      color: "hover:text-[#E4405F]",
-    },
-    {
-      icon: FaTwitter,
-      url: CONTACT_INFO.socialMedia.twitter || "#",
-      label: "Twitter",
-      color: "hover:text-[#1DA1F2]",
     },
   ];
 
@@ -67,19 +53,11 @@ const Footer = () => {
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  NS
-                </div>
-                <div>
-                  <span className="text-xl font-bold text-white">
-                    Naans Spring
-                  </span>
-                  <span className="block text-sm text-gray-400 -mt-1">
-                    Enterprise
-                  </span>
-                </div>
-              </div>
+              <img
+                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                alt="Naans Spring Enterprise Logo"
+                className="h-16 w-auto md:h-20"
+              />
             </Link>
 
             <p className="text-sm text-gray-400 leading-relaxed">

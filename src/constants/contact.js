@@ -1,7 +1,7 @@
 export const CONTACT_INFO = {
   businessName: "Naans Spring Enterprise",
-  whatsapp: "08031574601",
-  phone: "08031574601",
+  whatsapp: "2348031574601", // international format for wa.me links (no +, no leading 0)
+  phone: "08031574601", // local format, safe for tel: links and display
   email: "danielnaanswat@gmail.com",
   address:
     "Behind former Umah Bread Junction, along New Rayfield Road, Mun Chogopyang, Jos, Jos South Local Government Area, Plateau State, Nigeria.",
@@ -29,6 +29,14 @@ Please provide information about availability and delivery.
 
 Thank you.`;
   },
+};
+
+// Helper to build a WhatsApp chat link safely
+export const buildWhatsAppLink = (message = "") => {
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${CONTACT_INFO.whatsapp}${
+    encodedMessage ? `?text=${encodedMessage}` : ""
+  }`;
 };
 
 export const WHATSAPP_NUMBER = CONTACT_INFO.whatsapp;

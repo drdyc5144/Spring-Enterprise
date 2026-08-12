@@ -1,0 +1,128 @@
+import { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
+import CONTACT_INFO from "../../constants/contact";
+import MobileMenu from "./MobileMenu";
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/shop", label: "Shop" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+  ];
+
+  const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsapp}`;
+
+  return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white shadow-md py-2"
+            : "bg-white/95 backdrop-blur-sm py-4"
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="container-custom">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center gap-2 group"
+              aria-label="Naans Spring Enterprise Home"
+            >
+              <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                NS
+              </div>
+              <div className="hidden sm:block">
+                <span className="text-xl font-bold text-brand-primary group-hover:text-brand-secondary transition-colors">
+                  Naans Spring
+                </span>
+                <span className="block text-xs text-text-muted -mt-1">
+                  Enterprise
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors hover:text-brand-primary ${
+                      isActive
+                        ? "text-brand-primary border-b-2 border-brand-primary"
+                        : "text-text"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+
+            {/* Desktop WhatsApp CTA */}
+            <div className="hidden md:flex items-center gap-4">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp text-sm px-4 py-2"
+                aria-label="Order on WhatsApp"
+              >
+                <FaWhatsapp className="text-lg" />
+                Order on WhatsApp
+              </a>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? (
+                <FaTimes className="text-2xl text-text" />
+              ) : (
+                <FaBars className="text-2xl text-text" />
+              )}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+
+      {/* Spacer to prevent content from hiding behind fixed navbar */}
+      <div className="h-16 md:h-20" />
+    </>
+  );
+};
+
+export default Navbar;

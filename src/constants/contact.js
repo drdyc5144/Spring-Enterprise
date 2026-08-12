@@ -1,7 +1,7 @@
 export const CONTACT_INFO = {
   businessName: "Naans Spring Enterprise",
-  whatsapp: "1238031574601", // Remove the + sign
-  phone: "1238031574601",
+  whatsapp: "08031574601",
+  phone: "08031574601",
   email: "danielnaanswat@gmail.com",
   address:
     "Behind former Umah Bread Junction, along New Rayfield Road, Mun Chogopyang, Jos, Jos South Local Government Area, Plateau State, Nigeria.",

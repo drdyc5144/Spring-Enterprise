@@ -14,12 +14,21 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
-  // Handle scroll effect
+  // Handle scroll effect with throttle for performance
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -38,10 +47,10 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform ${
           isScrolled
-            ? "bg-white shadow-md py-2"
-            : "bg-white/95 backdrop-blur-sm py-4"
+            ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
+            : "bg-white/90 backdrop-blur-sm shadow-sm py-4"
         }`}
         role="navigation"
         aria-label="Main navigation"
@@ -51,13 +60,13 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-2 group shrink-0"
               aria-label="Naans Spring Enterprise Home"
             >
-              <img
-                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
-                alt="Naans Spring Enterprise Logo"
-                className="h-12 w-auto md:h-14"
+              <img 
+                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png" 
+                alt="Naans Spring Enterprise Logo" 
+                className="h-12 w-auto md:h-14 transition-all duration-300"
               />
             </Link>
 
@@ -68,14 +77,17 @@ const Navbar = () => {
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors hover:text-brand-primary ${
+                    `text-sm font-medium transition-colors hover:text-brand-primary relative ${
                       isActive
-                        ? "text-brand-primary border-b-2 border-brand-primary"
+                        ? "text-brand-primary"
                         : "text-text"
                     }`
                   }
                 >
                   {link.label}
+                  {({ isActive }) => isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary rounded-full" />
+                  )}
                 </NavLink>
               ))}
             </div>
@@ -86,7 +98,7 @@ const Navbar = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-whatsapp text-sm px-4 py-2"
+                className="btn-whatsapp text-sm px-4 py-2 transition-all duration-200 hover:scale-105"
                 aria-label="Order on WhatsApp"
               >
                 <FaWhatsapp className="text-lg" />

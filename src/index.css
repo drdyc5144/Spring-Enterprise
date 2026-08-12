@@ -105,10 +105,120 @@
   .section-subtitle {
     @apply text-lg text-text-muted max-w-2xl;
   }
+
+  /* Navbar specific styles */
+  .navbar-scroll {
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Active link underline animation */
+  .nav-link-active {
+    position: relative;
+  }
+
+  .nav-link-active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #2e7d32;
+    border-radius: 2px;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  /* Skip to content link */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 
+           focus:z-50 focus:bg-white focus:text-brand-primary 
+           focus:px-4 focus:py-3 focus:rounded-lg focus:shadow-lg 
+           focus:border-2 focus:border-brand-primary;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
+@layer utilities {
+  /* Animation utilities */
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+}
+
+/* Keyframes */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -121,4 +231,25 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-brand-secondary;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply bg-white;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-2 outline-brand-primary outline-offset-2;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-brand-primary/20 text-text;
 }

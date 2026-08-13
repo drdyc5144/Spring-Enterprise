@@ -6,8 +6,6 @@ import {
   FaTruck,
   FaClock,
   FaFacebook,
-  FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
 import CONTACT_INFO from "../../constants/contact";
 
@@ -61,21 +59,9 @@ const Contact = () => {
     },
     {
       icon: FaFacebook,
-      url: CONTACT_INFO.socialMedia.facebook || "#",
+      url: "https://web.facebook.com/naanswat.namang",
       label: "Facebook",
       color: "text-[#1877F2]",
-    },
-    {
-      icon: FaInstagram,
-      url: CONTACT_INFO.socialMedia.instagram || "#",
-      label: "Instagram",
-      color: "text-[#E4405F]",
-    },
-    {
-      icon: FaTwitter,
-      url: CONTACT_INFO.socialMedia.twitter || "#",
-      label: "Twitter",
-      color: "text-[#1DA1F2]",
     },
   ];
 
@@ -148,50 +134,31 @@ const Contact = () => {
                       <FaClock className="text-brand-primary" />
                       <span>{CONTACT_INFO.workingHours}</span>
                     </div>
-                    {CONTACT_INFO.mapsLink && (
-                      <a
-                        href={CONTACT_INFO.mapsLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-brand-primary font-medium hover:underline mt-2"
-                      >
-                        <FaMapMarkerAlt />
-                        Get Directions
-                      </a>
-                    )}
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=Behind+former+Umah+Bread+Junction,+Jos,+Plateau+State,+Nigeria"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-brand-primary font-medium hover:underline mt-2"
+                    >
+                      <FaMapMarkerAlt />
+                      Get Directions
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            {/* Map Placeholder */}
+            {/* Google Map */}
             <div className="h-48 bg-gray-200 relative">
-              {CONTACT_INFO.mapsLink ? (
-                <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                  <div className="text-center p-4">
-                    <FaMapMarkerAlt className="text-brand-primary text-4xl mx-auto mb-2" />
-                    <p className="text-sm text-text-muted">
-                      View on Google Maps
-                    </p>
-                    <a
-                      href={CONTACT_INFO.mapsLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-primary text-sm font-medium hover:underline"
-                    >
-                      Open Map →
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10">
-                  <div className="text-center">
-                    <FaMapMarkerAlt className="text-brand-primary text-4xl mx-auto mb-2 opacity-50" />
-                    <p className="text-sm text-text-muted">
-                      Map location coming soon
-                    </p>
-                  </div>
-                </div>
-              )}
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCw7EAvWXUiHPni682j_Wlfme4-qsEjbrM&q=Behind+former+Umah+Bread+Junction,+along+New+Rayfield+Road,+Jos,+Plateau+State,+Nigeria`}
+                title="Naans Spring Enterprise Location"
+              />
             </div>
           </div>
 

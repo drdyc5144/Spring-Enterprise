@@ -64,61 +64,44 @@ const LocationCTA = () => {
                 <FaPhone />
                 Call Us
               </a>
-              {CONTACT_INFO.mapsLink && (
-                <a
-                  href={CONTACT_INFO.mapsLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accent flex-1 min-w-[140px] justify-center"
-                >
-                  <FaMapMarkerAlt />
-                  Get Directions
-                </a>
-              )}
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Behind+former+Umah+Bread+Junction,+Jos,+Plateau+State,+Nigeria"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-accent flex-1 min-w-[140px] justify-center"
+              >
+                <FaMapMarkerAlt />
+                Get Directions
+              </a>
             </div>
           </div>
 
-          {/* Right Column - Map/Image */}
+          {/* Right Column - Map */}
           <div className="relative">
             <div className="bg-white rounded-xl shadow-md border border-border overflow-hidden">
               <div className="aspect-video bg-gray-200 relative">
-                {CONTACT_INFO.mapsLink ? (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                    {/* Placeholder - Replace with actual map embed or image */}
-                    <div className="text-center p-8">
-                      <FaMapMarkerAlt className="text-brand-primary text-5xl mx-auto mb-3" />
-                      <p className="text-text-muted text-sm">
-                        Find us in Jos, Plateau State
-                      </p>
-                      <a
-                        href={CONTACT_INFO.mapsLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-brand-primary text-sm font-medium hover:underline"
-                      >
-                        View on Google Maps →
-                      </a>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10">
-                    <div className="text-center">
-                      <FaMapMarkerAlt className="text-brand-primary text-5xl mx-auto mb-2 opacity-50" />
-                      <p className="text-text-muted text-sm">
-                        Map location coming soon
-                      </p>
-                    </div>
-                  </div>
-                )}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCw7EAvWXUiHPni682j_Wlfme4-qsEjbrM&q=Behind+former+Umah+Bread+Junction,+along+New+Rayfield+Road,+Jos,+Plateau+State,+Nigeria`}
+                  title="Naans Spring Enterprise Location"
+                  className="absolute inset-0 w-full h-full"
+                />
               </div>
             </div>
 
             {/* Floating info card */}
             <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg border border-border p-4 max-w-[200px] hidden sm:block">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
-                  NS
-                </div>
+                <img
+                  src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                  alt="Naans Spring Enterprise Logo"
+                  className="h-10 w-auto"
+                />
                 <div>
                   <p className="text-xs font-semibold text-text">
                     Visit Us Today

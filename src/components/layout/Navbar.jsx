@@ -17,7 +17,7 @@ const Navbar = () => {
   // Handle scroll effect with throttle for performance
   useEffect(() => {
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -27,7 +27,7 @@ const Navbar = () => {
         ticking = true;
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -63,9 +63,9 @@ const Navbar = () => {
               className="flex items-center gap-2 group shrink-0"
               aria-label="Naans Spring Enterprise Home"
             >
-              <img 
-                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png" 
-                alt="Naans Spring Enterprise Logo" 
+              <img
+                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
+                alt="Naans Spring Enterprise Logo"
                 className="h-12 w-auto md:h-14 transition-all duration-300"
               />
             </Link>
@@ -78,16 +78,11 @@ const Navbar = () => {
                   to={link.to}
                   className={({ isActive }) =>
                     `text-sm font-medium transition-colors hover:text-brand-primary relative ${
-                      isActive
-                        ? "text-brand-primary"
-                        : "text-text"
+                      isActive ? "text-brand-primary" : "text-text"
                     }`
                   }
                 >
                   {link.label}
-                  {({ isActive }) => isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary rounded-full" />
-                  )}
                 </NavLink>
               ))}
             </div>

@@ -4,12 +4,14 @@ import { FaSearch, FaFilter, FaTimes } from "react-icons/fa";
 import ProductGrid from "../../components/product/ProductGrid";
 import SectionHeader from "../../components/common/SectionHeader";
 import AvailabilityBadge from "../../components/common/AvailabilityBadge";
+import SkeletonLoader from "../../components/common/SkeletonLoader";
 import { useProducts } from "../../hooks/useProducts";
 import CONTACT_INFO from "../../constants/contact";
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showFilters, setShowFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
     products,
@@ -23,6 +25,15 @@ const Shop = () => {
     handleAvailabilityToggle,
     clearFilters,
   } = useProducts();
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Initialize from URL params
   useEffect(() => {
@@ -63,6 +74,21 @@ Thank you.`;
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
+
+  // Show loading skeleton
+  if (isLoading) {
+    return (
+      <div className="py-8 md:py-12">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="h-10 bg-gray-200 rounded w-48 mx-auto mb-4 animate-pulse" />
+            <div className="h-6 bg-gray-200 rounded w-96 mx-auto animate-pulse" />
+          </div>
+          <SkeletonLoader type="product" count={8} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-8 md:py-12">

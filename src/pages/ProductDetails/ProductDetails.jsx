@@ -13,7 +13,6 @@ import { useProducts } from "../../hooks/useProducts";
 import AvailabilityBadge from "../../components/common/AvailabilityBadge";
 import ProductGallery from "../../components/product/ProductGallery";
 import CONTACT_INFO from "../../constants/contact";
-import LoadingState from "../../components/common/LoadingState";
 import Breadcrumb from "../../components/common/Breadcrumb";
 
 const ProductDetails = () => {
@@ -25,7 +24,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    // Find the product immediately
     const foundProduct = getProductBySlug(slug);
     setProduct(foundProduct || null);
 
@@ -34,6 +33,7 @@ const ProductDetails = () => {
       setSelectedSize(foundProduct.sizes[0]);
     }
 
+    // Turn off loading immediately
     setLoading(false);
   }, [slug, getProductBySlug]);
 
@@ -64,7 +64,42 @@ Thank you.`;
   if (loading) {
     return (
       <div className="container-custom py-12">
-        <LoadingState />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Image Skeleton */}
+          <div className="space-y-4">
+            <div className="aspect-square bg-gray-200 rounded-2xl animate-pulse" />
+            <div className="grid grid-cols-4 gap-2">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="aspect-square bg-gray-200 rounded-lg animate-pulse" />
+              ))}
+            </div>
+          </div>
+          
+          {/* Content Skeleton */}
+          <div className="space-y-6">
+            <div className="flex gap-3">
+              <div className="h-8 bg-gray-200 rounded-full w-24 animate-pulse" />
+              <div className="h-8 bg-gray-200 rounded-full w-24 animate-pulse" />
+            </div>
+            <div className="h-12 bg-gray-200 rounded w-3/4 animate-pulse" />
+            <div className="h-10 bg-gray-200 rounded w-1/3 animate-pulse" />
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-full animate-pulse" />
+              <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse" />
+              <div className="h-4 bg-gray-200 rounded w-4/6 animate-pulse" />
+            </div>
+            <div className="flex gap-2">
+              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
+              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
+              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
+            </div>
+            <div className="h-14 bg-gray-200 rounded w-full animate-pulse" />
+            <div className="grid grid-cols-2 gap-3">
+              <div className="h-12 bg-gray-200 rounded animate-pulse" />
+              <div className="h-12 bg-gray-200 rounded animate-pulse" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

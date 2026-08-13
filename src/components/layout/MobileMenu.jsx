@@ -67,17 +67,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
         {/* Menu content */}
         <div className="pt-16 px-6 h-full overflow-y-auto">
-          {/* Logo */}
-          <div className="mb-8">
-            <Link to="/" onClick={onClose} className="flex items-center gap-3">
-              <img
-                src="https://i.postimg.cc/mgj4Lr2V/Naans-Springs.png"
-                alt="Naans Spring Enterprise Logo"
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
-
           {/* Navigation Links */}
           <nav className="space-y-1">
             {navLinks.map((link) => (

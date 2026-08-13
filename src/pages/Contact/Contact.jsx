@@ -156,7 +156,7 @@ const Contact = () => {
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCw7EAvWXUiHPni682j_Wlfme4-qsEjbrM&q=Behind+former+Umah+Bread+Junction,+along+New+Rayfield+Road,+Jos,+Plateau+State,+Nigeria`}
+                src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=Behind+former+Umah+Bread+Junction,+along+New+Rayfield+Road,+Jos,+Plateau+State,+Nigeria`}
                 title="Naans Spring Enterprise Location"
               />
             </div>

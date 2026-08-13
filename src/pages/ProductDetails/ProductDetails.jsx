@@ -20,18 +20,12 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const { getProductBySlug, products } = useProducts();
   const [product, setProduct] = useState(null);
-  const [selectedSize, setSelectedSize] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Find the product immediately
     const foundProduct = getProductBySlug(slug);
     setProduct(foundProduct || null);
-
-    // Set default size
-    if (foundProduct && foundProduct.sizes && foundProduct.sizes.length > 0) {
-      setSelectedSize(foundProduct.sizes[0]);
-    }
 
     // Turn off loading immediately
     setLoading(false);
@@ -45,12 +39,11 @@ const ProductDetails = () => {
   const handleWhatsAppOrder = () => {
     if (!product) return;
 
-    const sizeText = selectedSize ? `\nSize: ${selectedSize}` : "";
     const message = `Hello Naans Spring Enterprise,
 
 I am interested in ordering:
 
-Product: ${product.name}${sizeText}
+Product: ${product.name}
 Price: ₦${product.price.toLocaleString()}
 
 Please provide information about availability and delivery.
@@ -87,11 +80,6 @@ Thank you.`;
               <div className="h-4 bg-gray-200 rounded w-full animate-pulse" />
               <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse" />
               <div className="h-4 bg-gray-200 rounded w-4/6 animate-pulse" />
-            </div>
-            <div className="flex gap-2">
-              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
-              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
-              <div className="h-12 bg-gray-200 rounded flex-1 animate-pulse" />
             </div>
             <div className="h-14 bg-gray-200 rounded w-full animate-pulse" />
             <div className="grid grid-cols-2 gap-3">
@@ -187,39 +175,8 @@ Thank you.`;
               <p className="leading-relaxed">{product.description}</p>
             </div>
 
-            {/* Size/Weight Selection */}
-            {product.sizes && product.sizes.length > 0 && (
-              <div>
-                <h4 className="font-semibold text-text mb-3 flex items-center gap-2">
-                  <FaWeight className="text-brand-primary" />
-                  Select Size / Weight
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all duration-200 ${
-                        selectedSize === size
-                          ? "border-brand-primary bg-brand-primary/10 text-brand-primary"
-                          : "border-border hover:border-brand-primary/50 text-text"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Product Details */}
             <div className="space-y-3 border-t border-border pt-6">
-              {product.origin && (
-                <div className="flex items-center gap-3 text-sm">
-                  <span className="font-medium text-text">Origin:</span>
-                  <span className="text-text-muted">{product.origin}</span>
-                </div>
-              )}
               {product.storage && (
                 <div className="flex items-center gap-3 text-sm">
                   <span className="font-medium text-text">Storage:</span>

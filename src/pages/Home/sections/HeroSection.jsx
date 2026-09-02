@@ -83,7 +83,7 @@ const HeroSection = () => {
                 <p className="text-text-muted">Stock Fish • Ogbono • Egusi • Crawfish • Kpomo • Beans • Palm Oil • Tuwo Rice</p>
               </div>
               <img
-                src="https://i.postimg.cc/L570NrDF/hero-section.png"
+                src="https://i.postimg.cc/sXS1PQhN/spring.jpg"
                 alt="Naans Spring Enterprise - Quality Foodstuff Products including Stock Fish, Ogbono, Egusi, Crawfish, Kpomo, Beans, Palm Oil and Tuwo Rice"
                 className="w-full h-full object-cover absolute inset-0"
                 loading="eager"

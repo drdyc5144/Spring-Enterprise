@@ -112,7 +112,7 @@ export const products = [
     description:
       "Premium dried crayfish, finely ground. Adds rich flavor and nutrients to soups, stews, and sauces.",
     category: "Soup Ingredients",
-    price: 10000,
+    price: 9500,
     image: "https://i.postimg.cc/7PXWRKDJ/crafish.jpg",
     images: ["https://i.postimg.cc/7PXWRKDJ/crafish.jpg"],
     available: true,

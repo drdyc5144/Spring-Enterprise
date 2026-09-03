@@ -128,7 +128,7 @@ export const products = [
     description:
       "Premium dried crayfish - large size. Adds rich flavor and nutrients to soups, stews, and sauces.",
     category: "Soup Ingredients",
-    price: 77000,
+    price: 74000,
     image: "https://i.postimg.cc/P59JYQ8q/large.jpg",
     images: ["https://i.postimg.cc/P59JYQ8q/large.jpg"],
     available: true,
@@ -201,7 +201,7 @@ export const products = [
     description:
       "Premium quality Nigerian brown beans. Rich in protein and essential nutrients. Ideal for preparing beans porridge and other dishes.",
     category: "Grains",
-    price: 1400,
+    price: 1600,
     image: "https://i.postimg.cc/Fs05BjW1/beans.jpg",
     images: ["https://i.postimg.cc/Fs05BjW1/beans.jpg"],
     available: true,
@@ -252,7 +252,7 @@ export const products = [
     description:
       "Premium rice flour specially processed for making tuwo (rice pudding). Perfect for traditional Nigerian dishes.",
     category: "Grains",
-    price: 1500,
+    price: 1700,
     image: "https://i.postimg.cc/PfcmNDMJ/towu-riice.jpg",
     images: ["https://i.postimg.cc/PfcmNDMJ/towu-riice.jpg"],
     available: true,
